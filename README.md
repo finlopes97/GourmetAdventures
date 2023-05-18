@@ -1,3 +1,17 @@
 # Complete Solution for Event Management System
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu arcu at eros lobortis porta vel at nisl. Nullam id consectetur dolor. Morbi tincidunt lectus quis tortor mattis, ut tincidunt nisl vulputate. Vestibulum ac euismod neque, vel cursus mi. Phasellus hendrerit, sem quis scelerisque consequat, dui lacus pretium mi, in tincidunt erat mauris sit amet sem. Donec sit amet leo sed orci viverra convallis. Fusce malesuada, risus eget semper pellentesque, massa magna iaculis erat, nec pellentesque est dolor varius nisi. Maecenas pulvinar est non dolor commodo, et commodo dui eleifend. Proin rhoncus accumsan quam, id maximus ante aliquam et. Maecenas augue ante, consectetur vel iaculis eget, cursus eu felis. Etiam vel velit eu neque rutrum tempus rutrum non magna. Pellentesque lacinia, arcu aliquet efficitur sodales, nibh lacus facilisis massa, ut bibendum erat sem ac mi. Nam metus tortor, hendrerit sed sodales nec, ullamcorper vehicula ligula. Donec vehicula gravida purus. 
+## Gitequitte
+1. You should almost always create a new branch for any work you do.
+2. Use groups to classify your branches, groups being:
+   * bugfix 
+   * feature 
+   And any additional groups we may require can be added.
+3. When naming branches use the convention "group-description-of-branch". 
+   An example is "bugfix-header-size-issue"
+4. Try to post a message letting the team know when you push a commit
+   using Discord or some other means so we can check it out and 
+   update our local repos.
+5. When you work on an issue on the project tracker, and finish the 
+   task that was set, please close the issue. 
+6. When you finish a task, try to keep the TASKLIST.md updated. 
+7. Please don't delete the main branch 🫥
