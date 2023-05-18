@@ -21,10 +21,12 @@ worry about using any fancy markdown styling, just write something
 like:
 
 ---
+
 Task: Landing Page
 Date Completed: 18/05/2023
 Completed By: Kyle
 Brief: Worked on the HTML templates
+
 ---
 
 The horizontal lines "---" are just to add some whitespace between 
@@ -34,80 +36,48 @@ at the end, so place your contributions under the heading below.
 ### Team Contributions
 
 ---
+
 Task:
 Date Completed:
 Completed By:
 Brief:
+
 ---
 
 ---
+
 Task:
 Date Completed:
 Completed By:
 Brief:
+
 ---
 
 ---
+
 Task:
 Date Completed:
 Completed By:
 Brief:
+
 ---
 
 ---
+
 Task:
 Date Completed:
 Completed By:
 Brief:
+
 ---
 
 ---
-Task:
-Date Completed:
-Completed By:
-Brief:
----
 
----
 Task:
 Date Completed:
 Completed By:
 Brief:
----
 
----
-Task:
-Date Completed:
-Completed By:
-Brief:
----
-
----
-Task:
-Date Completed:
-Completed By:
-Brief:
----
-
----
-Task:
-Date Completed:
-Completed By:
-Brief:
----
-
----
-Task:
-Date Completed:
-Completed By:
-Brief:
----
-
----
-Task:
-Date Completed:
-Completed By:
-Brief:
 ---
 
 ### PythonAnywhere Attempt
