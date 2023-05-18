@@ -22,61 +22,62 @@ like:
 
 ---
 
-Task: Landing Page
-Date Completed: 18/05/2023
-Completed By: Kyle
-Brief: Worked on the HTML templates
+* Task: Landing Page  
+* Date Completed: 18/05/2023  
+* Completed By: Kyle  
+* Brief: Worked on the HTML templates  
 
 ---
 
 The horizontal lines "---" are just to add some whitespace between 
-contributions so the file is more readable. This example will be deleted
-at the end, so place your contributions under the heading below.
+contributions so the file is more readable, same for the asterisks "*"
+on a new-line. This example will be deleted at the end, so place 
+your contributions under the heading below.
 
 ### Team Contributions
 
 ---
 
-Task:
-Date Completed:
-Completed By:
-Brief:
+* Task:  
+* Date Completed:  
+* Completed By:  
+* Brief:
 
 ---
 
 ---
 
-Task:
-Date Completed:
-Completed By:
-Brief:
+* Task:  
+* Date Completed:  
+* Completed By:  
+* Brief:
 
 ---
 
 ---
 
-Task:
-Date Completed:
-Completed By:
-Brief:
+* Task:  
+* Date Completed:  
+* Completed By:  
+* Brief:
 
 ---
 
 ---
 
-Task:
-Date Completed:
-Completed By:
-Brief:
+* Task:  
+* Date Completed:  
+* Completed By:  
+* Brief:
 
 ---
 
 ---
 
-Task:
-Date Completed:
-Completed By:
-Brief:
+* Task:  
+* Date Completed:  
+* Completed By:  
+* Brief:
 
 ---
 
