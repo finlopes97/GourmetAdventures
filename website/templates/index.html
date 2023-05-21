@@ -1,56 +1,50 @@
-<html>
+{% extends 'base.html' %}
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Foodie Directions</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-        <!-- Add FontAwesome icons -->
-        <script src="https://kit.fontawesome.com/42381de42c.js" crossorigin="anonymous"></script>
-    </head>
-
-    <body>
-        <header>
-            <nav>
-                <!-- Using Bootstrap responsive breakpoints to add an expandable menu when on a mobile display -->
-                <div class="navbar navbar-expand-lg navbar-light bg-light">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="index.html">
-                            <!-- Implement Font Awesome icons like this if you're curious homies -->
-                            <i class="fa-solid fa-utensils"></i>
-                            Foodie Directions
-                        </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarResponsive">
-                            <!-- Searchbar -->
-                            <form class="d-flex ms-auto mb-0">
-                                <input class="form-control me-2" type="search" placeholder="Find foodies..." aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit">Search</button>
-                            </form>
-                            <!-- Login button -->
-                            <button type="button" class="btn btn-outline-primary ms-2">Login</button>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </header>
-
-        <!-- Main -->
-        {% block content %}
-        {% endblock %}
-
-        <!-- Wrap the footer in a container to apply additional positioning on it -->
-        <div class="container mx-lg-5">
-            <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-                <div class="col-md-4 d-flex align-items-center">
-                    <span class="mb-3 mb-md-0 text-muted">© 2021 Foodie Directions, Inc - IAB207</span>
-                </div>
-            </footer>
+{% block header %}
+    <!-- Jumbotron -->
+    <div class="p-5 bg-light" style="background-image: url(../static/img/pexels-sami-aksu-15950013.jpg); background-position: center;">
+        <div class="container-fluid py-5 text-center">
+            <h1 class="display-5 fw-bold text-light">Discover your next gourmet adventure.</h1>
         </div>
+    </div>
+{% endblock %}
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-    </body>
+{% block content %}
+<div class="container-fluid">
 
-</html>
+    <!-- Placeholder category buttons -->
+    
+    <div class="row p-3 shadow bg-body-tertiary" id="categories">
+        <div class="col-12">
+            <div data-bs-spy="scroll" data-bs-smooth-scroll="true" class="horizontal-scroll" tabindex="0">
+                <a type="button" class="btn btn-outline-dark" href="#categories">Market</a>
+                <a type="button" class="btn btn-outline-dark" href="#categories">Festival</a>
+                <a type="button" class="btn btn-outline-dark" href="#categories">Asian</a>
+                <a type="button" class="btn btn-outline-dark" href="#categories">Western</a>
+                <a type="button" class="btn btn-outline-dark" href="#categories">Seafood</a>
+                <a type="button" class="btn btn-outline-dark" href="#categories">Dessert</a>
+                <a type="button" class="btn btn-outline-dark" href="#categories">Wine</a>
+                <a type="button" class="btn btn-outline-dark" href="#categories">Beer</a>
+                <a type="button" class="btn btn-outline-dark" href="#categories">Spirits</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Placeholder event card -->
+    
+    <div class="row mx-3 my-4">
+
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+            <div class="card event-card shadow bg-body-tertiary">
+                <img src="../static/img/pexels-clem-onojeghuo-104884.jpg" class="card-img-top event-card-img" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Street Food Market</h5>
+                    <p class="card-text">Sat, May 13<br>Street, Faketon QLD<br>Entry $12</p>
+                    <a type="button" class="btn btn-outline-success btn-sm stretched-link" href="/event">Open</a>
+                </div>
+            </div>
+        </div>    
+
+    </div>
+</div>
+{% endblock %}

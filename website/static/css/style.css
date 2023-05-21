@@ -1,0 +1,18 @@
+.btn {
+    margin: 3px;
+}
+
+.horizontal-scroll {
+    overflow: auto;
+    white-space: nowrap;
+}
+
+img.event-card-img {
+    height: 12rem;
+    object-fit: cover;
+}
+
+img.event-img {
+    height: 30rem;
+    object-fit: cover;
+}

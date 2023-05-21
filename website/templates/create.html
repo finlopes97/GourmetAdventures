@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="p-4 bg-light shadow mb-4">
+    <h1>Event Page Setup</h1>
+</div>
+
+<div class="container-fluid">
+
+    <!-- Event creation form -->
+    
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-12 mb-4">
+            <form class="p-3 shadow bg-body-tertiary rounded-4" id="createEvent">
+                <div class="mb-3">
+                    <label for="displayImagesInput" class="form-label">Display Images</label>
+                    <input class="form-control" type="file" accept="image/*" id="displayImagesInput" multiple>
+                </div>
+                <div class="mb-3">
+                    <label for="eventTitleInput" class="form-label">Event Title</label>
+                    <input class="form-control" type="text" id="eventTitleInput" required>
+                </div>
+                <div class="mb-3">
+                    <label for="descriptionInput" class="form-label">Description</label>
+                    <textarea class="form-control" id="descriptionInput" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="eventDate" class="form-label">Event Date</label>
+                    <input class="form-control" type="date" id="eventDate" required>
+                </div>
+                <div class="mb-3">
+                    <label for="eventTime" class="form-label">Start Time - End Time</label>
+                    <div class="input-group" id="eventTime">
+                        <input class="form-control" type="time" aria-label="Start Time" required>
+                        <input class="form-control" type="time" aria-label="End Time" required>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="locationInput" class="form-label">Location/Venue</label>
+                    <input class="form-control" type="text" id="locationInput" required>
+                </div>
+                <div class="mb-3">
+                    <label for="priceInput" class="form-label">Ticket Price</label>
+                    <div class="input-group" id="priceInput">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" min="0.01" step="0.01" aria-label="Price">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="ticketNum" class="form-label">Number of Tickets</label>
+                        <input type="number" class="form-control" min="1" id="ticketNum">
+                    </div>
+                </div>
+                <div class="form-check mt-1">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                    <label class="form-check-label" for="invalidCheck2">
+                        Agree to terms and conditions
+                    </label>
+                </div>
+                <div class="d-grid justify-content-end">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Event submission toast -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+        <div id="submissionToast" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    Event submitted! <a href="/event">View page</a>
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Initialize toast and prevent refresh -->
+<script>
+    const toastTrigger = document.getElementById('createEvent')
+    const toastSubmit = document.getElementById('submissionToast')
+
+    if (toastTrigger) {
+        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastSubmit)
+        toastTrigger.addEventListener('submit', event => {
+            event.preventDefault();
+            toastBootstrap.show()
+        })
+    }
+</script>
+{% endblock %}
