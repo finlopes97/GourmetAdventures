@@ -12,8 +12,8 @@
 | -------------------- | -------- |
 | Kyle Lopez-Finlayson | 10974512 |
 | Keenan Martin        | 10197524 |
-| Meh Patel            | ######## |
-| Hamza Rauf           | ######## |
+| Meh Patel            | 11289341 |
+| Hamza Rauf           | 10377263 |
 
 This isn't exactly to spec but we're a few weeks late 🐍
 Add your contributions here! Just to keep it simple, don't
