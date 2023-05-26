@@ -30,21 +30,22 @@
         </div>
     </div>
 
-    <!-- Placeholder event card -->
+    <!-- Event cards -->
     
     <div class="row mx-3 my-4">
-
+        {% for event in events %}
         <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
             <div class="card event-card shadow bg-body-tertiary">
-                <img src="../static/img/pexels-clem-onojeghuo-104884.jpg" class="card-img-top event-card-img" alt="...">
+                <img src="{{ event.image }}" class="card-img-top event-card-img" alt="...">
                 <div class="card-body">
-                    <h5 class="card-title">Street Food Market</h5>
-                    <p class="card-text">Sat, May 13<br>Street, Faketon QLD<br>Entry $12</p>
+                    <h5 class="card-title">{{ event.name }}</h5>
+                    <p class="card-text">{{ event.date }}<br>{{ event.location }}<br>{{ event.price }}</p>
+                    <!-- change href to {{ url_for('event.show', id=event.id) }} when event pages are set up -->
                     <a type="button" class="btn btn-outline-success btn-sm stretched-link" href="/event">Open</a>
                 </div>
             </div>
         </div>    
-
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

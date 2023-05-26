@@ -5,7 +5,8 @@ bp = Blueprint('main', __name__)
 
 @bp.route('/')
 def index():
-    return render_template('index.html')
+    events = db.session.scalars(db.select(Event)).all()
+    return render_template('index.html', events=events)
 
 @bp.route('/user')
 def user():
