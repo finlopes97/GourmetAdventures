@@ -1,12 +1,24 @@
 from flask import Blueprint, flash, render_template, request, url_for, redirect
 from werkzeug.security import generate_password_hash,check_password_hash
-#from .models import User
+from .models import User
 from .forms import LoginForm,RegisterForm
 from flask_login import login_user, login_required,logout_user
 from . import db
 
 #create a blueprint
 bp = Blueprint('auth', __name__)
+
+# Implementing placeholder functions because I'm about to pass out and I don't want to lose my place
+
+@bp.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        # Handle login logic here
+        # validate user credentials
+        # and get em in 
+        pass 
+    return render_template('login.html', form-login_form, heading='Login')
+
 
 # this is a hint for a login function
 # @bp.route('/login', methods=['GET', 'POST'])
