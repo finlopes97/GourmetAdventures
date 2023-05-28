@@ -12,6 +12,7 @@ class User(db.Model):
     date_of_birth = db.Column(db.Date, nullable=False)
     profile_image = db.Column(db.String(200), default='static/default.png', nullable=False)
 
+    # Relationship to call user.comments and comment.user
     comments = db.relationship('Comment', backref='user')
 
     def __repr__(self):
