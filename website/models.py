@@ -1,8 +1,9 @@
 from flask_login import UserMixin
 from . import db
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.string(40), nullable=False)
@@ -14,6 +15,14 @@ class User(db.Model):
 
     # Relationship to call user.comments and comment.user
     comments = db.relationship('Comment', backref='user')
+
+    def set_password(self, password):
+        # Sets password to a hashed password
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        # Returns True if password is correct
+        return check_password_hash(self.password_hash, password)
 
     def __repr__(self):
         return "<Username: {}>".format(self.username)
