@@ -1,6 +1,9 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect, url_for
+from werkzeug.utils import secure_filename
 from .models import Event
+from .forms import EventCreationForm
 from . import db
+import uuid, os
 
 bp = Blueprint('main', __name__)
 
@@ -13,14 +16,43 @@ def index():
 def user():
     return render_template('user.html')
 
-@bp.route('/event')
-def event():
-    return render_template('event.html')
+@bp.route('/event/<int:id>')
+def event(id):
+  event = Event.query.get(id)
+  if event:
+    return render_template('event.html', event=event)
 
-@bp.route('/create')
+@bp.route('/create', methods=['GET', 'POST'])
 def create():
-    return render_template('create.html')
+    if request.method == 'POST':
+        create_form = EventCreationForm()
+        
+        if create_form.validate_on_submit():
+            print('User has submitted the event creation form for validation...')
+            # Build a filename for the image path
+            filename = str(uuid.uuid4())
+            uploaded_file = create_form.image.data
+            secure_filename(uploaded_file.filename)
+            # Set the image path to the static folder
+            save_path = os.path.join('website/static/img/events', filename)
+            uploaded_file.save(save_path)
+        
+            event = Event(
+                title=create_form.title.data,
+                description=create_form.description.data,
+                image=filename,
+                dateTime=create_form.date.data,
+                price=create_form.price.data,
+                ticketsAvailable=create_form.tickets.data,
+                locationName=create_form.location.data
+            )
+            
+            db.session.add(event)
+            db.session.commit()
 
+            return redirect(url_for('views.index'))    
+    return render_template('create.html', create_form=create_form)
+    
 @bp.route('/bookings')
 def bookings():
     return render_template('bookings.html')
