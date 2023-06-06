@@ -1,23 +1,34 @@
-
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField
-from wtforms.validators import InputRequired, Length, Email, EqualTo
+from wtforms import *
+from wtforms.validators import *
+from .models import User, Event
 
-
-#creates the login information
 class LoginForm(FlaskForm):
-    user_name=StringField("User Name", validators=[InputRequired('Enter user name')])
-    password=PasswordField("Password", validators=[InputRequired('Enter user password')])
-    submit = SubmitField("Login")
+	email = StringField('Email', validators=[InputRequired(), Email(), Length(max=120)], render_kw={"class": "form-control"})
+	password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)], render_kw={"class": "form-control"})
+	remember_me = BooleanField('Remember Me', default=False, render_kw={"class": "form-check-input"})
+	
+	submitLogin = SubmitField('Login', render_kw={"class": "btn btn-primary"})
 
- # this is the registration form
-class RegisterForm(FlaskForm):
-    user_name=StringField("User Name", validators=[InputRequired()])
-    email_id = StringField("Email Address", validators=[Email("Please enter a valid email")])
-    #linking two fields - password should be equal to data entered in confirm
-    password=PasswordField("Password", validators=[InputRequired(),
-                  EqualTo('confirm', message="Passwords should match")])
-    confirm = PasswordField("Confirm Password")
-
-    #submit button
-    submit = SubmitField("Register")
+class RegistrationForm(FlaskForm):
+	username = StringField('Username', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control", "placeholder": "foodlover"})
+	email = StringField('Email', validators=[InputRequired(), Email(), Length(max=120)], render_kw={"class": "form-control", "placeholder": "foodlover@email.com"})
+	password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)], render_kw={"class": "form-control"})
+	confirm_password = PasswordField('Confirm Password', validators=[InputRequired(), EqualTo('password')], render_kw={"class": "form-control"})
+	
+	submitRegistration = SubmitField('Sign Up', render_kw={"class": "btn btn-primary"})
+	
+	def validate_email(self, email):
+		user = User.query.filter_by(email=email.data).first()
+		if user:
+			raise ValidationError('Email is already taken.')
+		
+class EventCreationForm(FlaskForm):
+	title = StringField('Event Name', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control"})
+	description = TextAreaField('Event Description', validators=[InputRequired(), Length(min=50, max=500)], render_kw={"class": "form-control"})
+	image = FileField('Event Image', validators=[DataRequired()], render_kw={"class": "form-control-file", "type": "file"})
+	eventDateTime = DateTimeLocalField('Event Date & Start Time', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control", "type": "datetime-local"})
+	price = DecimalField('Event Price', validators=[InputRequired()], render_kw={"class": "form-control"})
+	ticketsAvailable = IntegerField('Tickets Available', validators=[InputRequired()], render_kw={"class": "form-control"})
+	location = StringField('Event Location', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control"})
+	submitCreate = SubmitField('Create Event', render_kw={"class": "btn btn-primary"})
