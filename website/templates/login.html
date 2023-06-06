@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="mt-5">
+
+  <div class="container-sm">
+
+    <h3>Login</h3>
+
+    <form method="POST" action="{{ url_for('auth.login') }}" enctype="multipart/form-data">
+      {{ login_form.csrf_token }}
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          {{ login_form.email.label }} {{ login_form.email }}
+        </li>
+        <li class="list-group-item">
+          {{ login_form.password.label }} {{ login_form.password }}
+        </li>
+        <li class="list-group-item">
+          <div class="form-check">
+            {{ login_form.remember_me }} 
+            {{ login_form.remember_me.label }}
+            {{ login_form.submitLogin }}
+          </div>
+        </li>
+      </ul>
+    </form>
+
+  </div>
+
+  <h2 class="mx-auto text-center">Or if you're new...</h2>
+
+  <div class="container-sm">
+
+    <h3>Registration</h3>
+
+    <form method="POST" action="{{ url_for('auth.login') }}" enctype="multipart/form-data">
+      {{ registration_form.csrf_token }}
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          {{ registration_form.username.label }} {{ registration_form.username }}
+        </li>
+        <li class="list-group-item">
+          {{ registration_form.email.label }} {{ registration_form.email }}
+        </li>
+        <li class="list-group-item">
+          {{ registration_form.password.label }} {{ registration_form.password }}
+          {{ registration_form.confirm_password.label }} {{ registration_form.confirm_password }}
+          <div id="passwordHelpBlock" class="form-text">
+            Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
+          </div>
+        </li>
+        <li class="list-group-item">
+          {{ registration_form.submitRegistration }}
+        </li>
+      </ul>
+    </form>
+
+  </div>
+
+</div>
+
+{% endblock %}

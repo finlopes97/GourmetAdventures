@@ -3,6 +3,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap5
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_wtf.csrf import CSRFProtect
 
 db=SQLAlchemy()
 
@@ -19,6 +20,9 @@ def create_app():
     db.init_app(app)
 
     bootstrap = Bootstrap5(app)
+
+    # Activate CSRF protection
+    CSRFProtect(app)
     
     #initialize the login manager
     login_manager = LoginManager()
