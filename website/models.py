@@ -4,14 +4,16 @@ from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 
 class User(UserMixin, db.Model):
-    __tablename__ = 'user'
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.string(40), nullable=False)
+    username = db.Column(db.String(40), nullable=False)
     email = db.Column(db.String(120), nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
 
     # Relationship to call user.comments and comment.user
     comments = db.relationship('Comment', backref='user')
+    # call user.bookings, booking.user
+    bookings = db.relationship('Booking', backref='user')
 
     def set_password(self, password):
         # Sets password to a hashed password
@@ -34,23 +36,39 @@ class Event(db.Model):
     price = db.Column(db.Numeric(precision=10, scale=2))
     ticketsAvailable = db.Column(db.Integer, nullable=False)
     locationName = db.Column(db.String(80), nullable=False)
+    status = db.Column(db.String(20), default="Open", nullable=False)
+    category = db.Column(db.String(20))
 
     # Relationship to call event.comments and comment.event
     comments = db.relationship('Comment', backref='event')
+    # call event.bookings, booking.event
+    bookings = db.relationship('Booking', backref='event')
 	
     def __repr__(self):
         return "<Title: {}>".format(self.title)
 
 class Comment(db.Model):
+    __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
     content = db.Column(db.Text, nullable=False)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    event_id = db.Column(db.Integer, db.ForeignKey('event.id'), nullable=False)
 
-    # Relationships
-    user = db.relationship('User', backref='comments')
-    event = db.relationship('Event', backref='comments')
+    # Foreign keys
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
 
     def __repr__(self):
         return f"<Comment id={self.id} content='{self.content[:20]}...' timestamp={self.timestamp}>"
+    
+class Booking(db.Model):
+    __tablename__ = 'bookings'
+    id = db.Column(db.Integer, primary_key=True)
+    ticketNum = db.Column(db.Integer, nullable=False)
+    dateTime = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)
+
+    # Foreign keys
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    event_id = db.Column(db.Integer, db.ForeignKey('events.id'))
+
+    def __repr__(self):
+        return "<Booking ID: {}>".format(self.id)
