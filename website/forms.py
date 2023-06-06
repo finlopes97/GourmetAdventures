@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField, SubmitField, StringField, PasswordField, BooleanField
+from wtforms import *
 from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
 from .models import User
 
@@ -19,7 +19,16 @@ class RegistrationForm(FlaskForm):
 	submitRegistration = SubmitField('Sign Up', render_kw={"class": "btn btn-primary"})
 	
 	def validate_email(self, email):
-		# Check if email is already taken
 		user = User.query.filter_by(email=email.data).first()
 		if user:
 			raise ValidationError('Email is already taken.')
+		
+class EventCreationForm(FlaskForm):
+	title = StringField('Event Name', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control"})
+	description = TextAreaField('Event Description', validators=[InputRequired(), Length(min=50, max=500)], render_kw={"class": "form-control"})
+	image = FileField('Event Image', validators=[DataRequired()], render_kw={"class": "form-control-file", "type": "file"})
+	eventDateTime = DateTimeLocalField('Event Date & Start Time', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control", "type": "datetime-local"})
+	price = DecimalField('Event Price', validators=[InputRequired()], render_kw={"class": "form-control"})
+	ticketsAvailable = IntegerField('Tickets Available', validators=[InputRequired()], render_kw={"class": "form-control"})
+	location = StringField('Event Location', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control"})
+	submitCreate = SubmitField('Create Event', render_kw={"class": "btn btn-primary"})
