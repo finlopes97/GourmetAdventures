@@ -9,9 +9,6 @@ class User(UserMixin, db.Model):
     username = db.Column(db.string(40), nullable=False)
     email = db.Column(db.String(120), nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
-    full_name = db.Column(db.String(120), nullable=False)
-    date_of_birth = db.Column(db.Date, nullable=False)
-    profile_image = db.Column(db.String(200), default='static/default.png', nullable=False)
 
     # Relationship to call user.comments and comment.user
     comments = db.relationship('Comment', backref='user')
@@ -33,10 +30,10 @@ class Event(db.Model):
     title = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(200), nullable=False)
     image = db.Column(db.String(400))
-    date = db.Column(db.DateTime, nullable=False)
-    startTime = db.Column(db.DateTime, nullable=False)
-    endTime = db.Column(db.DateTime, nullable=False)
+    dateTime = db.Column(db.DateTime, nullable=False)
     price = db.Column(db.Numeric(precision=10, scale=2))
+    ticketsAvailable = db.Column(db.Integer, nullable=False)
+    locationName = db.Column(db.String(80), nullable=False)
 
     # Relationship to call event.comments and comment.event
     comments = db.relationship('Comment', backref='event')

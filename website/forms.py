@@ -1,14 +1,14 @@
 from flask_wtf import FlaskForm
 from wtforms import *
 from wtforms.validators import *
-from .models import User, Event
+from .models import User
 
 class LoginForm(FlaskForm):
 	email = StringField('Email', validators=[InputRequired(), Email(), Length(max=120)], render_kw={"class": "form-control"})
 	password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)], render_kw={"class": "form-control"})
 	remember_me = BooleanField('Remember Me', default=False, render_kw={"class": "form-check-input"})
 	
-	submitLogin = SubmitField('Login', render_kw={"class": "btn btn-primary"})
+	submit = SubmitField('Login', render_kw={"class": "btn btn-primary"})
 
 class RegistrationForm(FlaskForm):
 	username = StringField('Username', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control", "placeholder": "foodlover"})
@@ -16,7 +16,7 @@ class RegistrationForm(FlaskForm):
 	password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)], render_kw={"class": "form-control"})
 	confirm_password = PasswordField('Confirm Password', validators=[InputRequired(), EqualTo('password')], render_kw={"class": "form-control"})
 	
-	submitRegistration = SubmitField('Sign Up', render_kw={"class": "btn btn-primary"})
+	submit = SubmitField('Sign Up', render_kw={"class": "btn btn-primary"})
 	
 	def validate_email(self, email):
 		user = User.query.filter_by(email=email.data).first()
@@ -30,5 +30,6 @@ class EventCreationForm(FlaskForm):
 	eventDateTime = DateTimeLocalField('Event Date & Start Time', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control", "type": "datetime-local"})
 	price = DecimalField('Event Price', validators=[InputRequired()], render_kw={"class": "form-control"})
 	ticketsAvailable = IntegerField('Tickets Available', validators=[InputRequired()], render_kw={"class": "form-control"})
-	location = StringField('Event Location', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control"})
-	submitCreate = SubmitField('Create Event', render_kw={"class": "btn btn-primary"})
+	locationName = StringField('Event Location', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control"})
+
+	submit = SubmitField('Create Event', render_kw={"class": "btn btn-primary"})
