@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import *
-from wtforms.validators import InputRequired, Length, Email, EqualTo, ValidationError
-from .models import User
+from wtforms.validators import *
+from .models import User, Event
 
 class LoginForm(FlaskForm):
 	email = StringField('Email', validators=[InputRequired(), Email(), Length(max=120)], render_kw={"class": "form-control"})
