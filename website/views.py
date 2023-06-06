@@ -4,7 +4,6 @@ from . import db
 
 bp = Blueprint('main', __name__)
 
-
 @bp.route('/')
 def index():
     events = db.session.scalars(db.select(Event)).all()
