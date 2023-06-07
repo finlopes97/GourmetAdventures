@@ -8,16 +8,16 @@ from . import db
 bp = Blueprint('auth', __name__)
 
 @bp.route('/login', methods=['GET', 'POST'])
-def login():
+def login():        
+    login_form = LoginForm()
+    registration_form = RegistrationForm()
+    
     if request.method == 'POST':
-        loginForm = LoginForm()
-        registrationForm = RegistrationForm()
-
-        if loginForm.validate_on_submit():
+        if login_form.validate_on_submit():
             print('User has submitted the login form for validation...')
-            email = loginForm.email.data
-            password = loginForm.password.data
-            remember = loginForm.remember_me.data
+            email = login_form.email.data
+            password = login_form.password.data
+            remember = login_form.remember_me.data
 
             # Query the database to see if the user exists
             user = User.query.filter_by(email=email).first()
@@ -34,12 +34,12 @@ def login():
                 flash('Incorrect password')
                 return redirect(url_for('auth.login'))
             
-        elif registrationForm.validate_on_submit():
+        elif registration_form.validate_on_submit():
             print('User has submitted the registration form for validation...')
-            username = registrationForm.username.data
-            email = registrationForm.email.data
-            password = registrationForm.password.data
-            confirm_password = registrationForm.confirm_password.data
+            username = registration_form.username.data
+            email = registration_form.email.data
+            password = registration_form.password.data
+            confirm_password = registration_form.confirm_password.data
 
             user = User.query.filter_by(email=email).first()
 
@@ -58,9 +58,8 @@ def login():
                 db.session.add(new_user)
                 db.session.commit()
                 login_user(new_user)
-            return redirect(url_for('views.index'))
-        
-    return render_template('login.html', loginForm=LoginForm, registrationForm=RegistrationForm, heading='Login')
+            return redirect(url_for('views.index'))    
+    return render_template('login.html', login_form=login_form, registration_form=registration_form, heading='Login')
 
 @bp.route('/user', methods=['GET', 'POST'])
 def user():
@@ -75,7 +74,7 @@ def logout():
 # @bp.route('/login', methods=['GET', 'POST'])
 # def authenticate(): #view function
 #     print('In Login View function')
-#     login_form = LoginForm()
+#     login_form = login_form()
 #     error=None
 #     if(login_form.validate_on_submit()==True):
 #         user_name = login_form.user_name.data
