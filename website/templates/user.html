@@ -6,18 +6,49 @@
     <h4>{{heading}}</h4>
 </div>
 
-<!-- Form rendering is simple and easy if using WTForms -->
-<!-- If you want more granular control, declare the form manually: -->
-<!-- <form action="/route" method="post"> -->
+<!-- Display user's username -->
+<p>Username: {{ user.username }}</p>
+
+<!-- Events created by the user -->
+<h5>Events Created:</h5>
+{% if user.events %}
+    {% for event in user.events %}
+        {% include "eventCard.html" with event=event %}
+    {% endfor %}
+{% else %}
+    <p>No events created yet.</p>
+{% endif %}
+
+<!-- Events booked by the user -->
+<h5>Events Booked:</h5>
+{% if user.booked_events %}
+    {% for event in user.booked_events %}
+        {% include "eventCard.html" with event=event %}
+    {% endfor %}
+{% else %}
+    <p>No events booked yet.</p>
+{% endif %}
+
+{% endblock %}
+
+<!-- {% include "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block body %}
+
+<div class="page-header">
+    <h4>{{heading}}</h4>
+</div>
+
+
 <div class="col-md-6">
     {{wtf.render_form(form)}}
 </div>
 
-<!-- When you have login form, then show the user a link to register -->
+
 {% if heading|lower =='login' %}
 <div class="col-md-4">
     <p>New user? <a href="{{ url_for('register') }}">Click here to register</a>.</p>
 </div>
 {% endif %}
 
-{% endblock %}
+{% endblock %} -->
