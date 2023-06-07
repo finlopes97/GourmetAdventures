@@ -105,35 +105,33 @@
     </div>
 
     <div class="row">
-
-        <!-- Placeholder comments -->
         <div class="col-sm-7 offset-sm-1">
             <div class="p-3 shadow bg-body-tertiary rounded-4">
 
-                <form>
+                <!-- Comment form -->
+                <!-- if fails replace with {{ wtf.render_form(form,"/event/{0}/comment".format(event.id)) }} -->
+                <form method="POST" action="">
+                    {{ form.csrf_token }}
                     <div class="form-floating mb-1">
-                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100px"></textarea>
-                        <label for="floatingTextarea">Add a comment...</label>
+                        {{ form.content(class="form-control", placeholder="Comment", style="height: 100px") }}
+                        {{ form.content.label }}
                     </div>
                     <div class="d-grid justify-content-end">
-                        <button type="button" class="btn btn-outline-success btn-sm">Post</button>
+                        {{ form.submit(class="btn btn-outline-success btn-sm") }}
                     </div>
                 </form>
 
-                <div class="p-2">
-                    <strong>Jane</strong>
-                    <div class="float-end text-muted">5:01pm - Sun, May 21</div>
-                    <p>Had a great time trying so many stalls with my friends!</p>
-                </div>
-                <div class="p-2">
-                    <strong>John</strong>
-                    <div class="float-end text-muted">4:01pm - Sun, May 21</div>
-                    <p>Good food and cool vibe I guess.</p>
-                </div>
+                <!-- Comments -->
+                {% for comment in event.comments %}
+                <div class="p-2">  
+                    <strong>{{comment.user.username}}</strong>
+                    <div class="ml-3 text-muted">{{ comment.timestamp }}</div>
+                    <p>{{ comment.content }}</p>  
+                </div> 
+                {% endfor %}
                 
             </div>
         </div>
-
     </div>
 
 </div>

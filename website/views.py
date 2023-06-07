@@ -1,9 +1,10 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
-from .models import Event
-from .forms import EventCreationForm
+from .models import Event, Comment
+from .forms import EventCreationForm, CommentForm
 from . import db
 import uuid, os
+from flask_login import login_required, current_user
 
 bp = Blueprint('main', __name__)
 
@@ -19,7 +20,25 @@ def user():
 @bp.route('/event/<id>')
 def event(id):
     event = db.session.scalar(db.select(Event).where(Event.id==id))
-    return render_template('event.html', event=event)
+    form = CommentForm()
+    return render_template('event.html', event=event, form=form)
+
+@bp.route('/event/<event>/comment', methods=['GET', 'POST'])  
+def comment(event):  
+    form = CommentForm()  
+    event = db.session.scalar(db.select(Event).where(Event.id==event))
+
+    if form.validate_on_submit():  
+        comment = Comment(
+            content=form.content.data, 
+            event=event, 
+            user=current_user
+        ) 
+        db.session.add(comment) 
+        db.session.commit() 
+        print('User comment has been added', 'success')
+
+    return redirect(url_for('destination.show', id=event.id))
 
 @bp.route('/create', methods=['GET', 'POST'])
 def create():

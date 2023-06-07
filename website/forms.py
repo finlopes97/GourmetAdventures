@@ -33,3 +33,8 @@ class EventCreationForm(FlaskForm):
 	locationName = StringField('Event Location', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control"})
 
 	submit = SubmitField('Create Event', render_kw={"class": "btn btn-primary"})
+
+class CommentForm(FlaskForm):
+	content = TextAreaField('Add a comment...', [InputRequired()])
+
+	submit = SubmitField('Post')
