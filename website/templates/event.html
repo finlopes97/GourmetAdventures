@@ -5,28 +5,16 @@
 
     <div class="row mb-4">
 
-        <!-- Placeholder event images carousel -->
+        <!-- Event images carousel -->
 
         <div class="col-12 px-0 shadow">
             <div id="eventImages" class="carousel slide">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#eventImages" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#eventImages" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#eventImages" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#eventImages" data-bs-slide-to="3" aria-label="Slide 4"></button>
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="../static/img/pexels-clem-onojeghuo-104884.jpg" class="d-block w-100 event-img" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../static/img/pexels-kristina-paukshtite-983297.jpg" class="d-block w-100 event-img" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../static/img/pexels-mark-neal-2261197.jpg" class="d-block w-100 event-img" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="../static/img/pexels-maria-orlova-4947220.jpg" class="d-block w-100 event-img" alt="...">
+                        <img src="{{ event.image }}" class="d-block w-100 event-img" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#eventImages" data-bs-slide="prev">
@@ -47,20 +35,20 @@
         <!-- Placeholder event info -->
         <div class="col-sm-7 col-8">
             <div class="p-3 shadow bg-body-tertiary rounded-4">
-                <h1>Street Food Market</h1>
-                <p>The market with all your favourite street food stalls.</p>
-                <strong>Sat, May 13<br>12:00pm - 8:00pm</strong>
-                <p>Street, Faketon QLD</p>
+                <h1>{{ event.title }}</h1>
+                <p>{{ event.description }}</p>
+                <strong>{{ event.dateTime }}</strong>
+                <p>{{ event.locationName }}</p>
             </div>
         </div>
 
-        <!-- Buy form w/ placeholder price -->
+        <!-- Buy form  -->
         <div class="col-sm-3 col-4">
             
             <form class="p-3 shadow bg-body-tertiary rounded-4">
                 <div class="mb-2">
                     <label for="inputTickets" class="form-label">
-                        <h4>$12 entry</h4>
+                        <h4>{{ event.price }}</h4>
                     </label>
                     <select class="form-select" id="inputTickets">
                         <option selected>Select no. of tickets</option>

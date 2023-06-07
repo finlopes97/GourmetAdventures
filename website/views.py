@@ -16,10 +16,9 @@ def index():
 def user():
     return render_template('user.html')
 
-@bp.route('/event/<int:id>')
+@bp.route('/event/<id>')
 def event(id):
-  event = Event.query.get(id)
-  if event:
+    event = db.session.scalar(db.select(Event).where(Event.id==id))
     return render_template('event.html', event=event)
 
 @bp.route('/create', methods=['GET', 'POST'])
