@@ -12,8 +12,10 @@ class User(UserMixin, db.Model):
 
     # Relationship to call user.comments and comment.user
     comments = db.relationship('Comment', backref='user')
-    # call user.bookings, booking.user
+    # Relationship call user.bookings, booking.user
     bookings = db.relationship('Booking', backref='user')
+    # Relationship call user.events, event.user
+    events = db.relationship('Event', backref='user', lazy=True)
 
     def set_password(self, password):
         # Sets password to a hashed password
@@ -38,10 +40,12 @@ class Event(db.Model):
     locationName = db.Column(db.String(80), nullable=False)
     status = db.Column(db.String(20), default="Open", nullable=False)
     category = db.Column(db.String(20))
+    # Foreign key to users table
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     # Relationship to call event.comments and comment.event
     comments = db.relationship('Comment', backref='event')
-    # call event.bookings, booking.event
+    # Relationship call event.bookings, booking.event
     bookings = db.relationship('Booking', backref='event')
 	
     def __repr__(self):
