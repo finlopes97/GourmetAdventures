@@ -24,7 +24,7 @@ def login():
 
             if user and user.check_password(password):
                 login_user(user, remember=remember)
-                return redirect(url_for('views.index'))
+                return redirect(url_for('main.index'))
             elif not user:
                 print('User does not exist')
                 flash('User does not exist')
@@ -58,7 +58,8 @@ def login():
                 db.session.add(new_user)
                 db.session.commit()
                 login_user(new_user)
-            return redirect(url_for('views.index'))    
+            return redirect(url_for('main.index'))    
+
     return render_template('login.html', login_form=login_form, registration_form=registration_form, heading='Login')
 
 @bp.route('/user', methods=['GET', 'POST'])
@@ -68,7 +69,7 @@ def user():
 @bp.route('/logout', methods=['GET', 'POST'])
 def logout():
     logout_user()
-    return redirect(url_for('views.index'))
+    return redirect(url_for('main.index'))
 
 # this is a hint for a login function
 # @bp.route('/login', methods=['GET', 'POST'])

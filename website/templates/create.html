@@ -11,9 +11,7 @@
     
     <div class="mt-5">
         <div class="container-sm">
-            <h3>Create an Event</h3>
-
-            <form method="POST" action="{{ url_for('views.create') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ url_for('main.create') }}" enctype="multipart/form-data">
                 {{ create_form.csrf_token }}
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">
@@ -26,7 +24,7 @@
                         {{ create_form.image.label(class_="form-label") }} {{ create_form.image(class_="form-control", type="file") }}
                     </li>
                     <li class="list-group-item">
-                        {{ create_form.eventDateTime.label(class_="form-label") }} {{ create_form.eventDateTime(class_="form-control", type="datetime-local") }}
+                        {{ create_form.dateTime.label(class_="form-label") }} {{ create_form.dateTime(class_="form-control", type="datetime-local") }}
                     </li>
                     <li class="list-group-item">
                         {{ create_form.price.label }} {{ create_form.price }}
@@ -35,7 +33,7 @@
                         {{ create_form.ticketsAvailable.label }} {{ create_form.ticketsAvailable }}
                     </li>
                     <li class="list-group-item">
-                        {{ create_form.location.label }} {{ create_form.location }}
+                        {{ create_form.locationName.label }} {{ create_form.locationName }}
                     </li>
                     <li class="list-group-item">
                         {{ create_form.submitCreate }}

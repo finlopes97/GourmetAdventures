@@ -42,9 +42,10 @@ def comment(event):
 
 @bp.route('/create', methods=['GET', 'POST'])
 def create():
-    if request.method == 'POST':
-        create_form = EventCreationForm()
-        
+    create_form = EventCreationForm()
+    print('User has requested the event creation page...')
+
+    if request.method == 'POST':        
         if create_form.validate_on_submit():
             print('User has submitted the event creation form for validation...')
             # Build a filename for the image path
@@ -68,7 +69,8 @@ def create():
             db.session.add(event)
             db.session.commit()
 
-            return redirect(url_for('views.index'))    
+            return redirect(url_for('main.index'))
+     
     return render_template('create.html', create_form=create_form)
     
 @bp.route('/bookings')
