@@ -40,17 +40,26 @@
                                 </form>
                             </li>
                             <!-- Login button -->
-                            <li class="nav-item">
-                                <a type="button" class="btn btn-outline-primary ms-2" href="/user">Login</a>
-                            </li>
+                            {% if current_user.is_authenticated %}
+                                <li class="nav-item">
+                                    <a type="button" class="btn btn-outline-primary ms-2" href="/user">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a type="button" class="btn btn-outline-danger ms-2" href="/logout">Logout</a>
+                                </li>
+                            {% else %}
+                                <li class="nav-item">
+                                    <a type="button" class="btn btn-outline-primary ms-2" href="/login">Login</a>
+                                </li>
+                            {% endif %}
                             <!-- Create event link -->
                             <li class="nav-item">
                                 <a type="button" class="nav-item btn btn-outline-success" href="/create">Create Event</a>
                             </li>
-                            <!-- Bookings link -->
+                            <!-- Bookings link
                             <li class="nav-item">
                                 <a type="button" class="nav-item btn btn-light" href="/bookings">Bookings</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </div>         
                 </div>

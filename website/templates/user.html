@@ -3,31 +3,37 @@
 {% block body %}
 
 <div class="page-header">
-    <h4>{{heading}}</h4>
+    <h4>Your Information</h4>
 </div>
 
 <!-- Display user's username -->
 <p>Username: {{ user.username }}</p>
 
 <!-- Events created by the user -->
-<h5>Events Created:</h5>
-{% if user.events %}
-    {% for event in user.events %}
-        {% include "eventCard.html" with event=event %}
-    {% endfor %}
-{% else %}
-    <p>No events created yet.</p>
-{% endif %}
+<h5>Events you're running...</h5>
+<div class="container-sm">
+    {% if user.events %}
+        {% for event in user.events %}
+            {% include "eventCard.html" with event=event %}
+        {% endfor %}
+    {% else %}
+        <p>No events created yet.</p>
+    {% endif %}
+</div>
+
+<hr />
 
 <!-- Events booked by the user -->
-<h5>Events Booked:</h5>
-{% if user.booked_events %}
-    {% for event in user.booked_events %}
-        {% include "eventCard.html" with event=event %}
-    {% endfor %}
-{% else %}
-    <p>No events booked yet.</p>
-{% endif %}
+<h5>Your bookings...</h5>
+<div class="container-sm">
+    {% if user.booked_events %}
+        {% for event in user.booked_events %}
+            {% include "eventCard.html" with event=event %}
+        {% endfor %}
+    {% else %}
+        <p>No events booked yet.</p>
+    {% endif %}
+</div>
 
 {% endblock %}
 

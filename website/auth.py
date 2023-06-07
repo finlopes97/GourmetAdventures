@@ -1,7 +1,7 @@
 from flask import Blueprint, flash, render_template, request, url_for, redirect
 from .models import User
 from .forms import LoginForm, RegistrationForm
-from flask_login import login_user, login_required, logout_user
+from flask_login import login_user, login_required, logout_user, current_user
 from . import db
 
 #create a blueprint
@@ -61,6 +61,10 @@ def login():
             return redirect(url_for('views.index'))
         
     return render_template('login.html', loginForm=LoginForm, registrationForm=RegistrationForm, heading='Login')
+
+@bp.route('/user', methods=['GET', 'POST'])
+def user():
+    return render_template('user.html', user=current_user)
 
 @bp.route('/logout', methods=['GET', 'POST'])
 def logout():
