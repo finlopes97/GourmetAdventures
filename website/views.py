@@ -48,14 +48,6 @@ def create():
     print('User has requested the event creation page...')
 
     if request.method == 'POST':
-        
-        print(create_form.errors)
-        if create_form.is_submitted():
-            print("submitted")
-        if create_form.validate():
-            print("valid")
-        print(create_form.errors)
-        print(create_form.dateTime)
 
         if create_form.validate_on_submit():
             print('User has submitted the event creation form for validation...')
