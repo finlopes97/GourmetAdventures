@@ -17,15 +17,10 @@
     <div class="row p-3 shadow bg-body-tertiary" id="categories">
         <div class="col-12">
             <div data-bs-spy="scroll" data-bs-smooth-scroll="true" class="horizontal-scroll" tabindex="0">
-                <a type="button" class="btn btn-outline-dark" href="#categories">Market</a>
-                <a type="button" class="btn btn-outline-dark" href="#categories">Festival</a>
-                <a type="button" class="btn btn-outline-dark" href="#categories">Asian</a>
-                <a type="button" class="btn btn-outline-dark" href="#categories">Western</a>
-                <a type="button" class="btn btn-outline-dark" href="#categories">Seafood</a>
-                <a type="button" class="btn btn-outline-dark" href="#categories">Dessert</a>
-                <a type="button" class="btn btn-outline-dark" href="#categories">Wine</a>
-                <a type="button" class="btn btn-outline-dark" href="#categories">Beer</a>
-                <a type="button" class="btn btn-outline-dark" href="#categories">Spirits</a>
+                <a type="button" class="btn btn-outline-dark" href="/#categories">All</a>
+                {% for category in categories %}
+                    <a type="button" class="btn btn-outline-dark" href="{{ url_for('main.category', category=category) }}#categories">{{ category }}</a>
+                {% endfor %}
             </div>
         </div>
     </div>

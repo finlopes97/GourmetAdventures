@@ -11,7 +11,14 @@ bp = Blueprint('main', __name__)
 @bp.route('/')
 def index():
     events = db.session.scalars(db.select(Event)).all()
-    return render_template('index.html', events=events)
+    categories = db.session.scalars(db.select(Event.category).distinct())
+    return render_template('index.html', events=events, categories=categories)
+
+@bp.route('/<category>')
+def category(category):
+    events = db.session.scalars(db.select(Event).where(Event.category==category))
+    categories = db.session.scalars(db.select(Event.category).distinct())
+    return render_template('index.html', events=events, categories=categories)
 
 # @bp.route('/user')
 # def user():
@@ -101,7 +108,7 @@ def create():
                 ticketsAvailable=create_form.ticketsAvailable.data,
                 locationName=create_form.locationName.data,
                 status="Open",
-                category="Food",
+                category=create_form.category.data,
                 user=current_user
             )
             

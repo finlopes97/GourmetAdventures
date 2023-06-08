@@ -31,6 +31,18 @@ class EventCreationForm(FlaskForm):
 	price = DecimalField('Event Price', validators=[InputRequired()], render_kw={"class": "form-control"})
 	ticketsAvailable = IntegerField('Tickets Available', validators=[InputRequired()], render_kw={"class": "form-control"})
 	locationName = StringField('Event Location', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control"})
+	category = SelectField('Select Category', validators=[InputRequired()], choices=[
+		('Market', 'Market'),
+		('Festival', 'Festival'),
+		('Asian', 'Asian'),
+		('Western', 'Western'),
+		('Seafood', 'Seafood'),
+		('Dessert', 'Dessert'),
+		('Wine', 'Wine'),
+		('Beer', 'Beer'),
+		('Spirits', 'Spirits'),
+		('Other', 'Other')
+		])
 
 	submit = SubmitField('Create Event', render_kw={"class": "btn btn-primary"})
 
