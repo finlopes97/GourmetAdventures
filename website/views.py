@@ -13,9 +13,9 @@ def index():
     events = db.session.scalars(db.select(Event)).all()
     return render_template('index.html', events=events)
 
-@bp.route('/user')
-def user():
-    return render_template('user.html')
+# @bp.route('/user')
+# def user():
+#     return render_template('user.html')
 
 @bp.route('/event/<id>')
 def event(id):
