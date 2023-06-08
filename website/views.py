@@ -38,7 +38,7 @@ def comment(event):
         db.session.commit() 
         print('User comment has been added', 'success')
 
-    return redirect(url_for('destination.show', id=event.id))
+    return redirect(url_for('main.event', id=event.id))
 
 @bp.route('/create', methods=['GET', 'POST'])
 def create():
