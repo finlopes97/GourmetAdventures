@@ -1,60 +1,40 @@
+
 {% include "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
-{% block body %}
+{% block content %}
+
 
 <div class="page-header">
     <h4>Your Information</h4>
 </div>
-
 <!-- Display user's username -->
 <p>Username: {{ user.username }}</p>
-
 <!-- Events created by the user -->
 <h5>Events you're running...</h5>
 <div class="container-sm">
     {% if user.events %}
         {% for event in user.events %}
-            {% include "eventCard.html" with event=event %}
+            {% with %}
+                {% set event = event %}
+                {% include "eventCard.html" %}
+            {% endwith %}
         {% endfor %}
     {% else %}
         <p>No events created yet.</p>
     {% endif %}
 </div>
-
 <hr />
-
 <!-- Events booked by the user -->
 <h5>Your bookings...</h5>
 <div class="container-sm">
     {% if user.booked_events %}
         {% for event in user.booked_events %}
-            {% include "eventCard.html" with event=event %}
+            {% with %}
+                {% set event = event %}
+                {% include "eventCard.html" %}
+            {% endwith %}
         {% endfor %}
     {% else %}
         <p>No events booked yet.</p>
     {% endif %}
 </div>
-
 {% endblock %}
-
-<!-- {% include "base.html" %}
-{% import "bootstrap/wtf.html" as wtf %}
-{% block body %}
-
-<div class="page-header">
-    <h4>{{heading}}</h4>
-</div>
-
-
-<div class="col-md-6">
-    {{wtf.render_form(form)}}
-</div>
-
-
-{% if heading|lower =='login' %}
-<div class="col-md-4">
-    <p>New user? <a href="{{ url_for('register') }}">Click here to register</a>.</p>
-</div>
-{% endif %}
-
-{% endblock %} -->
