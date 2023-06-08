@@ -2,11 +2,11 @@
 
 {% block content %}
 
-<div class="mt-5">
+<div class="mt-2 mt-md-5">
 
-  <div class="container-sm">
+  <div class="container">
 
-    <h3>Login</h3>
+    <h3 class="">Login</h3>
 
     <form method="POST" action="{{ url_for('auth.login') }}" enctype="multipart/form-data">
       {{ login_form.csrf_token }}
@@ -29,7 +29,7 @@
 
   </div>
 
-  <h2 class="mx-auto text-center">Or if you're new...</h2>
+  <h2 class="my-5 mx-auto text-center">Or if you're new...</h2>
 
   <div class="container-sm">
 

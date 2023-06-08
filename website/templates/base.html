@@ -33,7 +33,7 @@
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                             <!-- Searchbar -->
-                            <li class="nav-item">
+                            <li class="nav-item ms-md-1 mt-1 mt-md-0">
                                 <form class="d-flex ms-auto mb-0">
                                     <input class="form-control me-2" type="search" placeholder="Find foodies..." aria-label="Search">
                                     <button class="btn btn-outline-success" type="submit">Search</button>
@@ -41,19 +41,19 @@
                             </li>
                             <!-- Login button -->
                             {% if current_user.is_authenticated %}
-                                <li class="nav-item">
-                                    <a type="button" class="btn btn-outline-primary ms-2" href="/user">Profile</a>
+                                <li class="nav-item ms-md-1 mt-1 mt-md-0">
+                                    <a type="button" class="btn btn-outline-primary" href="/user">Profile</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a type="button" class="btn btn-outline-danger ms-2" href="/logout">Logout</a>
+                                <li class="nav-item ms-md-1 mt-1 mt-md-0">
+                                    <a type="button" class="btn btn-outline-danger" href="/logout">Logout</a>
                                 </li>
                             {% else %}
-                                <li class="nav-item">
-                                    <a type="button" class="btn btn-outline-primary ms-2" href="/login">Login</a>
+                                <li class="nav-item ms-md-1 mt-1 mt-md-0">
+                                    <a type="button" class="btn btn-outline-primary" href="/login">Login</a>
                                 </li>
                             {% endif %}
                             <!-- Create event link -->
-                            <li class="nav-item">
+                            <li class="nav-item ms-md-1 mt-1 mt-md-0">
                                 <a type="button" class="nav-item btn btn-outline-success" href="/create">Create Event</a>
                             </li>
                             <!-- Bookings link

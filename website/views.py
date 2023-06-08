@@ -93,16 +93,22 @@ def create():
             print('User has submitted the event creation form for validation...')
             # Build a filename for the image path
             filename = str(uuid.uuid4())
+            # Get the uploaded file
             uploaded_file = create_form.image.data
+            # Get the file extension
+            _, file_extension = os.path.splitext(uploaded_file.filename)
+            # Build a secure filename and append the extension
             secure_filename(uploaded_file.filename)
+            filename_with_extension = filename + file_extension
             # Set the image path to the static folder
-            save_path = os.path.join('website/static/img', filename)
+            save_path = os.path.join('website/static/img', filename_with_extension)
+            # Save the uploaded file to the filesystem with the file path built above
             uploaded_file.save(save_path)
         
             event = Event(
                 title=create_form.title.data,
                 description=create_form.description.data,
-                image=filename,
+                image='/static/img/' + filename_with_extension,
                 dateTime=create_form.dateTime.data,
                 price=create_form.price.data,
                 ticketsAvailable=create_form.ticketsAvailable.data,
