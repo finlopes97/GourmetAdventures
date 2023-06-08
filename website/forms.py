@@ -38,3 +38,8 @@ class CommentForm(FlaskForm):
 	content = TextAreaField('Add a comment...', [InputRequired()])
 
 	submit = SubmitField('Post')
+
+class BookingForm(FlaskForm):
+	tickets = IntegerField('Enter no. of tickets...', [InputRequired()], render_kw={"min": "0", "step": "1"})
+
+	submit = SubmitField('Buy Tickets')

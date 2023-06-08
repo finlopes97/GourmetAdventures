@@ -1,7 +1,7 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, flash, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
-from .models import Event, Comment
-from .forms import EventCreationForm, CommentForm
+from .models import Event, Comment, Booking
+from .forms import EventCreationForm, CommentForm, BookingForm
 from . import db
 import uuid, os
 from flask_login import login_required, current_user
@@ -20,8 +20,9 @@ def index():
 @bp.route('/event/<id>')
 def event(id):
     event = db.session.scalar(db.select(Event).where(Event.id==id))
-    form = CommentForm()
-    return render_template('event.html', event=event, form=form)
+    comment_form = CommentForm()
+    booking_form = BookingForm()
+    return render_template('event.html', event=event, comment_form=comment_form, booking_form=booking_form)
 
 @bp.route('/event/<event>/comment', methods=['GET', 'POST'])  
 @login_required
@@ -38,6 +39,38 @@ def comment(event):
         db.session.add(comment) 
         db.session.commit() 
         print('User comment has been added', 'success')
+        flash('Your comment has been added.')
+
+    return redirect(url_for('main.event', id=event.id))
+
+@bp.route('/event/<event>/booking', methods=['GET', 'POST'])  
+@login_required
+def booking(event):  
+    form = BookingForm()  
+    event = db.session.scalar(db.select(Event).where(Event.id==event))
+
+    if form.validate_on_submit():
+        tickets=form.tickets.data
+        
+        if tickets > event.ticketsAvailable or tickets <= 0 or event.ticketsAvailable == 0:
+            print('Booking failed')
+            flash('Your order cannot be placed.')
+        else:
+            event.ticketsAvailable-=tickets
+            booking = Booking(
+                ticketNum=tickets, 
+                event=event, 
+                user=current_user
+                )
+            db.session.add(booking) 
+            db.session.commit() 
+            print('Booking added', 'success')
+            flash('Thank you! Your booking is complete.')
+
+            if event.ticketsAvailable == 0: 
+                event.status="Sold out"
+                db.session.commit() 
+                print('Event sold out!')
 
     return redirect(url_for('main.event', id=event.id))
 
@@ -74,6 +107,7 @@ def create():
             
             db.session.add(event)
             db.session.commit()
+            flash('Thank you! Your event has been created.')
 
             return redirect(url_for('main.index'))
      
