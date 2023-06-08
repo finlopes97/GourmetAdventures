@@ -1,32 +1,52 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<div class="p-4 bg-light shadow mb-4">
-    <h1>Booking History</h1>
-</div>
-
-<div class="container-fluid">
-
-    <!-- Placeholder booking card -->
-
-    <div class="row justify-content-center">
-        <div class="col-md-8 col-sm-10 col-12 mb-4">
-            <div class="card event-card shadow bg-body-tertiary">
-                <div class="row g-0">
-                    <div class="col-4">
-                        <img src="../static/img/pexels-clem-onojeghuo-104884.jpg" class="img-fluid w-100 rounded-start event-card-img" alt="...">
-                    </div>
-                    <div class="col-8">
-                        <div class="card-body">
-                            <h5 class="card-title">Street Food Market</h5>
-                            <p class="card-text">Order # 123456789</p>
-                            <p class="card-text"><small class="text-body-secondary">Booking placed 7:29PM 29/04/23</small></p>
-                            <a type="button" class="btn btn-outline-secondary btn-sm" href="/event">Event details</a>
-                        </div>
+<html>
+<head>
+	<title>Booking History</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<style type="text/css">
+		.card {
+			margin-bottom: 30px;
+		}
+	</style>
+	<link rel="stylesheet" href="CSS and Python file/Styling.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Booking History</h1>
+		<div class="row">
+			<div class="col-md-8">
+                <div class="card">
+                    <img src="../static/img/pexels-clem-onojeghuo-104884.jpg" class="img-fluid w-100 rounded-start event-card-img" alt="Event Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Food Fest</h5>
+                        <p class="card-text">Order # 123456</p>
+                        <p class="card-text"><small class="text-body-secondary">Booking placed: 11:00 AM 24/04/2023</small></p>
+                        <a type="button" class="btn btn-outline-secondary btn-sm" href="/event">Event details</a>
                     </div>
                 </div>
-            </div>
+				<div class="card">
+                    <img src="../static/img/pexels-maria-orlova-4947220.jpg" class="img-fluid w-100 rounded-start event-card-img" alt="Event Image">
+					<div class="card-body">
+						<h5 class="card-title">Food Carnival</h5>
+						<p class="card-text">Booking/Order ID: 123456</p>
+						<p class="card-text">Booked on: 24/04/2023 11:00 AM</p>
+                        <a type="button" class="btn btn-outline-secondary btn-sm" href="/event">Event details</a>
+					</div>
+				</div>
+				<div class="card">
+                    <img src="../static/img/pexels-kristina-paukshtite-983297.jpg">
+					<div class="card-body">
+						<h5 class="card-title">Food Street</h5>
+						<p class="card-text">Booking/Order ID: 789013</p>
+						<p class="card-text">Booked on: 02/01/2023 09:00 AM</p>
+                        <a type="button" class="btn btn-outline-secondary btn-sm" href="/event">Event details</a>
+			        </div>
+		        </div>
+	        </div>
         </div>
     </div>
-</div>
-{% endblock %}
+	<!-- Bootstrap JS and jQuery -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
