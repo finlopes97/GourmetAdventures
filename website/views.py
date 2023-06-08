@@ -13,9 +13,9 @@ def index():
     events = db.session.scalars(db.select(Event)).all()
     return render_template('index.html', events=events)
 
-@bp.route('/user')
-def user():
-    return render_template('user.html')
+#@bp.route('/user')
+#def user():
+#    return render_template('user.html')
 
 @bp.route('/event/<id>')
 def event(id):
@@ -24,6 +24,7 @@ def event(id):
     return render_template('event.html', event=event, form=form)
 
 @bp.route('/event/<event>/comment', methods=['GET', 'POST'])  
+@login_required
 def comment(event):  
     form = CommentForm()  
     event = db.session.scalar(db.select(Event).where(Event.id==event))
@@ -41,11 +42,21 @@ def comment(event):
     return redirect(url_for('main.event', id=event.id))
 
 @bp.route('/create', methods=['GET', 'POST'])
+@login_required
 def create():
     create_form = EventCreationForm()
     print('User has requested the event creation page...')
 
-    if request.method == 'POST':        
+    if request.method == 'POST':
+        
+        print(create_form.errors)
+        if create_form.is_submitted():
+            print("submitted")
+        if create_form.validate():
+            print("valid")
+        print(create_form.errors)
+        print(create_form.dateTime)
+
         if create_form.validate_on_submit():
             print('User has submitted the event creation form for validation...')
             # Build a filename for the image path
@@ -53,17 +64,20 @@ def create():
             uploaded_file = create_form.image.data
             secure_filename(uploaded_file.filename)
             # Set the image path to the static folder
-            save_path = os.path.join('website/static/img/events', filename)
+            save_path = os.path.join('website/static/img', filename)
             uploaded_file.save(save_path)
         
             event = Event(
                 title=create_form.title.data,
                 description=create_form.description.data,
                 image=filename,
-                dateTime=create_form.date.data,
+                dateTime=create_form.dateTime.data,
                 price=create_form.price.data,
-                ticketsAvailable=create_form.tickets.data,
-                locationName=create_form.location.data
+                ticketsAvailable=create_form.ticketsAvailable.data,
+                locationName=create_form.locationName.data,
+                status="Open",
+                category="Food",
+                user=current_user
             )
             
             db.session.add(event)

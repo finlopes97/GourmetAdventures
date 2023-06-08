@@ -109,8 +109,8 @@
             <div class="p-3 shadow bg-body-tertiary rounded-4">
 
                 <!-- Comment form -->
-                <!-- if fails replace with {{ wtf.render_form(form,"/event/{0}/comment".format(event.id)) }} -->
-                <form method="POST" action="">
+                <!-- if fails replace with wtf.render_form(form,"/event/{0}/comment".format(event.id)) -->
+                <form method="POST" action="{{ url_for('main.comment', event=event.id) }}" enctype="multipart/form-data">
                     {{ form.csrf_token }}
                     <div class="form-floating mb-1">
                         {{ form.content(class="form-control", placeholder="Comment", style="height: 100px") }}
@@ -125,8 +125,8 @@
                 {% for comment in event.comments %}
                 <div class="p-2">  
                     <strong>{{comment.user.username}}</strong>
-                    <div class="ml-3 text-muted">{{ comment.timestamp }}</div>
-                    <p>{{ comment.content }}</p>  
+                    <span class="text-muted">&nbsp{{ comment.timestamp.strftime('%Y-%m-%d %H:%M') }}</span>
+                    <p>{{ comment.content }}</p>
                 </div> 
                 {% endfor %}
                 
