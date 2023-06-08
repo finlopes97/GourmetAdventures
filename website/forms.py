@@ -8,7 +8,7 @@ class LoginForm(FlaskForm):
 	password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)], render_kw={"class": "form-control"})
 	remember_me = BooleanField('Remember Me', default=False, render_kw={"class": "form-check-input"})
 	
-	submit = SubmitField('Login', render_kw={"class": "btn btn-primary"})
+	submitLogin = SubmitField('Login', render_kw={"class": "btn btn-primary"})
 
 class RegistrationForm(FlaskForm):
 	username = StringField('Username', validators=[InputRequired(), Length(min=4, max=64)], render_kw={"class": "form-control", "placeholder": "foodlover"})
@@ -16,7 +16,7 @@ class RegistrationForm(FlaskForm):
 	password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=80)], render_kw={"class": "form-control"})
 	confirm_password = PasswordField('Confirm Password', validators=[InputRequired(), EqualTo('password')], render_kw={"class": "form-control"})
 	
-	submit = SubmitField('Sign Up', render_kw={"class": "btn btn-primary"})
+	submitRegistration = SubmitField('Sign Up', render_kw={"class": "btn btn-primary"})
 	
 	def validate_email(self, email):
 		user = User.query.filter_by(email=email.data).first()

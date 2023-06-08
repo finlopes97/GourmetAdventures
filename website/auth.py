@@ -13,7 +13,7 @@ def login():
     registration_form = RegistrationForm()
     
     if request.method == 'POST':
-        if login_form.validate_on_submit():
+        if login_form.submitLogin.data and login_form.validate_on_submit():
             print('User has submitted the login form for validation...')
             email = login_form.email.data
             password = login_form.password.data
@@ -34,7 +34,7 @@ def login():
                 flash('Incorrect password')
                 return redirect(url_for('auth.login'))
             
-        elif registration_form.validate_on_submit():
+        elif registration_form.submitRegistration.data and registration_form.validate_on_submit():
             print('User has submitted the registration form for validation...')
             username = registration_form.username.data
             email = registration_form.email.data
