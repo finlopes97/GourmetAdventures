@@ -101,14 +101,14 @@ def create():
             secure_filename(uploaded_file.filename)
             filename_with_extension = filename + file_extension
             # Set the image path to the static folder
-            save_path = os.path.join('website/static/img', filename_with_extension)
+            save_path = os.path.join('website/static/img/user_events', filename_with_extension)
             # Save the uploaded file to the filesystem with the file path built above
             uploaded_file.save(save_path)
         
             event = Event(
                 title=create_form.title.data,
                 description=create_form.description.data,
-                image='/static/img/' + filename_with_extension,
+                image='/static/img/user_events/' + filename_with_extension,
                 dateTime=create_form.dateTime.data,
                 price=create_form.price.data,
                 ticketsAvailable=create_form.ticketsAvailable.data,
