@@ -13,47 +13,47 @@
                     <div class="col-8">
                         
                         <div class="col-4">
-                            <img src="../static/img/pexels-clem-onojeghuo-104884.jpg" class="img-fluid w-100 rounded-start event-card-img" alt="...">
+                            <img src="{{ event.image }}" class="img-fluid w-100 rounded-start event-card-img" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Food Fest</h5>
-                                <p class="card-text">Order # 123456</p>
-                                <p class="card-text"><small class="text-body-secondary">Booking placed: 11:00 AM 24/04/2023</small></p>
+                                <h5 class="card-title">{{ event.title }}</h5>
+                                <p class="card-text">{{ booking.ticketNum }}</p>
+                                <p class="card-text"><small class="text-body-secondary">{{ Booking.dateTime }}</small></p>
                                 <a type="button" class="btn btn-outline-secondary btn-sm" href="/event">Event details</a>
                             </div>
                         </div>
                         <div class="col-4">
-                            <img src="../static/img/pexels-steshka-willems-2553651.jpg" class="img-fluid w-100 rounded-start event-card-img" alt="...">
+                            <img src="{{ event.image }}" class="img-fluid w-100 rounded-start event-card-img" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Food Carnival</h5>
-                                <p class="card-text">Order #: 789013</p>
-                                <p class="card-text"><small class="text-body-secondary">Booking placed: 09:00 AM 02/01/2023</small></p>
+                                <h5 class="card-title">{{ event.title }}</h5>
+                                <p class="card-text">{{ booking.ticketNum }}</p>
+                                <p class="card-text"><small class="text-body-secondary">{{ Booking.dateTime }}</small></p>
                                 <a type="button" class="btn btn-outline-secondary btn-sm" href="/event">Event details</a>
                             </div>
                         </div>
                         <div class="col-4">
-                            <img src="../static/img/pexels-ngakan-eka-10941231-2.jpg" class="img-fluid w-100 rounded-start event-card-img" alt="...">
+                            <img src="{{ event.image }}" class="img-fluid w-100 rounded-start event-card-img" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Eat All-Day Food festival</h5>
-                                <p class="card-text">Order #: 789013</p>
-                                <p class="card-text"><small class="text-body-secondary">Booking placed: 09:00 AM 02/01/2023</small></p>
+                                <h5 class="card-title">{{ event.title }}</h5>
+                                <p class="card-text">{{ booking.ticketNum }}</p>
+                                <p class="card-text"><small class="text-body-secondary">{{ Booking.dateTime }}</small></p>
                                 <a type="button" class="btn btn-outline-secondary btn-sm" href="/event">Event details</a>
                             </div>
                         </div>
                         <div class="col-4">
-                            <img src="../static/img/pexels-maria-orlova-4947220.jpg" class="img-fluid w-100 rounded-start event-card-img" alt="Event Image" class="img-fluid w-100 rounded-start event-card-img" alt="...">
+                            <img src="{{ event.image }}" class="img-fluid w-100 rounded-start event-card-img" alt="Event Image" class="img-fluid w-100 rounded-start event-card-img" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Food Gala</h5>
-                                <p class="card-text">Order #: 789013</p>
-                                <p class="card-text"><small class="text-body-secondary">Booking placed: 09:00 AM 02/01/2023</small></p>
+                                <h5 class="card-title">{{ event.title }}</h5>
+                                <p class="card-text">{{ booking.ticketNum }}</p>
+                                <p class="card-text"><small class="text-body-secondary">{{ Booking.dateTime }}</small></p>
                                 <a type="button" class="btn btn-outline-secondary btn-sm" href="/event">Event details</a>
                             </div>
                         </div>
                         <div class="col-4">
-                            <img src="../static/img/pexels-kristina-paukshtite-983297.jpg" class="img-fluid w-100 rounded-start event-card-img" alt="...">
+                            <img src="{{ event.image }}" class="img-fluid w-100 rounded-start event-card-img" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">Food Circus</h5>
-                                <p class="card-text">Order #: 789013</p>
-                                <p class="card-text"><small class="text-body-secondary">Booking placed: 09:00 AM 02/01/2023</small></p>
+                                <h5 class="card-title">{{ event.title }}</h5>
+                                <p class="card-text">{{ booking.ticketNum }}</p>
+                                <p class="card-text"><small class="text-body-secondary">{{Booking.dateTime}}</small></p>
                                 <a type="button" class="btn btn-outline-secondary btn-sm" href="/event">Event details</a>
                             </div>
                         </div>
