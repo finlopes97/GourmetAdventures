@@ -40,7 +40,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ event.title }}</h5>
                     <p class="card-text">{{ event.dateTime }}<br>{{ event.locationName }}<br>{{ event.price }}</p>
-                    <a type="button" class="btn btn-outline-success btn-sm stretched-link" href="{{ url_for('event.event', id=event.id) }}">{{ event.status }}</a>
+                    <a type="button" class="btn btn-outline-success btn-sm stretched-link" href="{{ url_for('main.event', id=event.id) }}">{{ event.status }}</a>
                 </div>
             </div>
         </div>    
