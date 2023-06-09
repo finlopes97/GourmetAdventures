@@ -1,15 +1,15 @@
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">{{ event.title }}</h5>
-        <p class="card-text">{{ event.description }}</p>
-        <p class="card-text">Location: {{ event.location }}</p>
-        <!-- Add other event details here -->
-
-        {% if event.created_by == current_user.id %}
-            <!-- Option visible only to the user who created the event -->
-            <form action="{{ url_for('edit_event', event_id=event.id) }}" method="POST">
-                <input type="submit" value="Edit Event">
-            </form>
-        {% endif %}
+<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+    <div class="card event-card shadow bg-body-tertiary">
+        <img src="{{ event.image }}" class="card-img-top event-card-img" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">{{ event.title }}</h5>
+            <p class="card-text">{{ event.dateTime }}<br>{{ event.locationName }}<br>${{ event.price }} per ticket</p>
+            {% if event.user_id == current_user.id %}
+                <form action="{{ url_for('main.create', event_id=event.id) }}" method="POST">
+                    <input type="submit" value="Edit Event">
+                </form>
+            {% endif %}
+            <a type="button" class="btn btn-outline-success btn-sm stretched-link" href="{{ url_for('main.event', id=event.id) }}">{{ event.status }}</a>
+        </div>
     </div>
-</div>
+</div>   

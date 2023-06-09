@@ -2,38 +2,44 @@
 
 
 {% block content %}
-<div class="page-header">
-    <h4>Your Information</h4>
-</div>
 <!-- Display user's username -->
-<p>Username: {{ user.username }}</p>
-<!-- Events created by the user -->
-<h5>Events you're running...</h5>
-<div class="container-sm">
-    {% if user.events %}
-        {% for event in user.events %}
-            {% with %}
-                {% set event = event %}
-                {% include "eventCard.html" %}
-            {% endwith %}
-        {% endfor %}
-    {% else %}
-        <p>No events created yet.</p>
-    {% endif %}
+<div class="page-header mt-2 mt-md-5">
+    <h3>Welcome {{ user.username }}</h3>
+    <hr />
 </div>
-<hr />
-<!-- Events booked by the user -->
-<h5>Your bookings...</h5>
-<div class="container-sm">
-    {% if user.booked_events %}
-        {% for event in user.booked_events %}
-            {% with %}
-                {% set event = event %}
-                {% include "eventCard.html" %}
-            {% endwith %}
-        {% endfor %}
-    {% else %}
-        <p>No events booked yet.</p>
-    {% endif %}
+
+<div class="container-fluid">
+    <!-- Events created by the user -->
+    <h4>Events you're running...</h4>
+    <div class="row mx-3 my-4">
+        {% if user.events %}
+            {% for event in user.events %}
+                {% with %}
+                    {% set event = event %}
+                    {% include "eventCard.html" %}
+                {% endwith %}
+            {% endfor %}
+        {% else %}
+            <h5 class="text-muted">You have created no events...</p>
+        {% endif %}
+    </div>   
+    
+    <hr />
+
+    <!-- Events booked by the user -->
+    <h4>Your bookings...</h4>
+    <div class="row mx-3 my-4">
+        {% if user.booked_events %}
+            {% for event in user.booked_events %}
+                {% with %}
+                    {% set event = event %}
+                    {% include "eventCard.html" %}
+                {% endwith %}
+            {% endfor %}
+        {% else %}
+            <h5 class="text-muted">You have no bookings...</p>
+        {% endif %}
+    </div>
+    
 </div>
 {% endblock %}
