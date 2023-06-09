@@ -3,3 +3,4 @@ __pycache__/
 website/__pycache__/
 .DS_Store
 website/.DS_Store
+instance/
