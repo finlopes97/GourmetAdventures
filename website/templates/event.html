@@ -5,10 +5,9 @@
 
     <div class="row mb-4">
 
-        <!-- single images -->
-
+        <!-- Event image -->
         <div class="col-12 px-0 shadow">
-            <img src="{{ event.image }}" class="d-block w-100 event-img" alt="Event image">
+            <img src="{{ event.image }}" class="d-block w-100 event-img" alt="..."> 
         </div>
 
     </div>
@@ -19,6 +18,15 @@
         <div class="col-sm-7 col-8">
             <div class="p-3 shadow bg-body-tertiary rounded-4">
                 <h1>{{ event.title }}</h1>
+
+                <!-- Cancel button -->
+                {% if event.user_id == current_user.id and event.status != "Cancelled" %}
+                <form action="{{ url_for('main.cancel', id=event.id) }}" method="POST" class="edit-button">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type="submit" value="Cancel Event" class="btn btn-outline-danger">
+                </form>
+                {% endif %}
+                
                 <p>{{ event.description }}</p>
                 <strong>{{ event.dateTime }}</strong>
                 <p>{{ event.locationName }}</p>
