@@ -5,27 +5,9 @@
 
     <div class="row mb-4">
 
-        <!-- Event images carousel -->
-
+        <!-- Event image -->
         <div class="col-12 px-0 shadow">
-            <div id="eventImages" class="carousel slide">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#eventImages" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                </div>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ event.image }}" class="d-block w-100 event-img" alt="...">
-                    </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#eventImages" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#eventImages" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
+            <img src="{{ event.image }}" class="d-block w-100 event-img" alt="..."> 
         </div>
 
     </div>
@@ -36,6 +18,15 @@
         <div class="col-sm-7 col-8">
             <div class="p-3 shadow bg-body-tertiary rounded-4">
                 <h1>{{ event.title }}</h1>
+
+                <!-- Cancel button -->
+                {% if event.user_id == current_user.id and event.status != "Cancelled" %}
+                <form action="{{ url_for('main.cancel', id=event.id) }}" method="POST" class="edit-button">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                    <input type="submit" value="Cancel Event" class="btn btn-outline-danger">
+                </form>
+                {% endif %}
+                
                 <p>{{ event.description }}</p>
                 <strong>{{ event.dateTime }}</strong>
                 <p>{{ event.locationName }}</p>
