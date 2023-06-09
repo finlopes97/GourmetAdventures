@@ -13,54 +13,51 @@
     </div>
 
     <div class="row justify-content-center mb-4">
-        
         <!-- Event info -->
-        <div class="col-sm-7 col-8">
+        <div class="container-fluid">
             <div class="p-3 shadow bg-body-tertiary rounded-4">
                 <h1>{{ event.title }}</h1>
 
-                <!-- Cancel button -->
-                {% if event.user_id == current_user.id and event.status != "Cancelled" %}
-                <form action="{{ url_for('main.cancel', id=event.id) }}" method="POST" class="edit-button">
-                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                    <input type="submit" value="Cancel Event" class="btn btn-outline-danger">
-                </form>
-                {% endif %}
-                
-                <p>{{ event.description }}</p>
-                <strong>{{ event.dateTime }}</strong>
-                <p>{{ event.locationName }}</p>
-            </div>
-        </div>
+                <div class="row p-3">
+                    <h4>${{ event.price }} ea.</h4>
+                    <p class="text-muted">{{ event.status }}</p>
+    
+                    {% if event.status == "Open" %}
+                        <!-- Buy form  -->
+                        <form method="POST" action="{{ url_for('main.booking', event=event.id) }}" enctype="multipart/form-data">
+                            {{ booking_form.csrf_token }}
+                            <div class="form-floating mb-1">
+                                {{ booking_form.tickets(class="form-control", placeholder="Tickets") }}
+                                {{ booking_form.tickets.label }}
+                            </div>
+                            <div class="d-grid justify-content-end">
+                                {{ booking_form.submit(class="btn btn-outline-success btn-sm") }}
+                            </div>
+                        </form>
+                    {% endif %}
+                </div>
 
-        <div class="col-sm-3 col-4">
-            <div class="p-3 shadow bg-body-tertiary rounded-4">
-                <h4>${{ event.price }} ea.</h4>
-                <p class="text-muted">{{ event.status }}</p>
+                <hr />
 
-                {% if event.status == "Open" %}
-                    <!-- Buy form  -->
-                    <form method="POST" action="{{ url_for('main.booking', event=event.id) }}" enctype="multipart/form-data">
-                        {{ booking_form.csrf_token }}
-                        <div class="form-floating mb-1">
-                            {{ booking_form.tickets(class="form-control", placeholder="Tickets") }}
-                            {{ booking_form.tickets.label }}
-                        </div>
-                        <div class="d-grid justify-content-end">
-                            {{ booking_form.submit(class="btn btn-outline-success btn-sm") }}
-                        </div>
+                <div class="row p-3">
+                    <p>{{ event.description }}</p>
+                    <strong>{{ event.dateTime }}</strong>
+                    <p>{{ event.locationName }}</p>
+                    <!-- Cancel button -->
+                    {% if event.user_id == current_user.id and event.status != "Cancelled" %}
+                    <form action="{{ url_for('main.cancel', id=event.id) }}" method="POST" class="edit-button">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <input type="submit" value="Cancel Event" class="btn btn-outline-danger">
                     </form>
-                {% endif %}
-
+                    {% endif %}
+                </div>
             </div>
         </div>
-
     </div>
 
     <div class="row">
-        <div class="col-sm-7 offset-sm-1">
+        <div class="container-fluid">
             <div class="p-3 shadow bg-body-tertiary rounded-4">
-
                 <!-- Comment form -->
                 <!-- if fails replace with wtf.render_form(form,"/event/{0}/comment".format(event.id)) -->
                 <form method="POST" action="{{ url_for('main.comment', event=event.id) }}" enctype="multipart/form-data">

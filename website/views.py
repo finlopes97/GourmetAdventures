@@ -48,7 +48,8 @@ def comment(event):
         comment = Comment(
             content=form.content.data, 
             event=event, 
-            user=current_user
+            user=current_user,
+            timestamp=datetime.now()
         ) 
         db.session.add(comment) 
         db.session.commit() 
