@@ -63,8 +63,8 @@ def login():
     return render_template('login.html', login_form=login_form, registration_form=registration_form, heading='Login')
 
 @bp.route('/user', methods=['GET', 'POST'])
-def user():
-    return render_template('user.html', user=current_user)
+def user(booking=None):
+    return render_template('user.html', user=current_user, booking=booking)
 
 @bp.route('/logout', methods=['GET', 'POST'])
 def logout():
