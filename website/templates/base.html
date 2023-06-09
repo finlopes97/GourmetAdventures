@@ -32,13 +32,6 @@
                     </div>
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                            <!-- Searchbar -->
-                            <li class="nav-item ms-md-1 mt-1 mt-md-0">
-                                <form class="d-flex ms-auto mb-0">
-                                    <input class="form-control me-2" type="search" placeholder="Find foodies..." aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
-                                </form>
-                            </li>
                             <!-- Login button -->
                             {% if current_user.is_authenticated %}
                                 <li class="nav-item ms-md-1 mt-1 mt-md-0">
@@ -56,16 +49,12 @@
                             <li class="nav-item ms-md-1 mt-1 mt-md-0">
                                 <a type="button" class="nav-item btn btn-outline-success" href="/create">Create Event</a>
                             </li>
-                            <!-- Bookings link
-                            <li class="nav-item">
-                                <a type="button" class="nav-item btn btn-light" href="/bookings">Bookings</a>
-                            </li> -->
                         </ul>
                     </div>         
                 </div>
             </div>
         </nav>
-
+        
         {% with messages = get_flashed_messages() %}
             {% if messages %}
             <div class="container-fluid">
