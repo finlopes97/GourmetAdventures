@@ -1,5 +1,5 @@
-{% extends "base.html" %}
 
+{% extends "base.html" %}
 
 {% block content %}
 <!-- Display user's username -->
@@ -7,7 +7,6 @@
     <h3>Welcome {{ user.username }}</h3>
     <hr />
 </div>
-
 <div class="container-fluid">
     <!-- Events created by the user -->
     <h4>Events you're running...</h4>
@@ -25,19 +24,19 @@
     </div>   
     
     <hr />
-
     <!-- Events booked by the user -->
     <h4>Your bookings...</h4>
     <div class="row mx-3 my-4">
-        {% if user.booked_events %}
-            {% for event in user.booked_events %}
+        {% if user.bookings %}
+            {% for event in user.bookings %}
                 {% with %}
                     {% set event = event %}
                     {% include "eventCard.html" %}
                 {% endwith %}
             {% endfor %}
         {% else %}
-            <h5 class="text-muted">You have no bookings...</p>
+        
+            <h5 class="text-muted">You have no bookings...</h5>
         {% endif %}
     </div>
     
