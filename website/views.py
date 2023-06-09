@@ -5,6 +5,7 @@ from .forms import EventCreationForm, CommentForm, BookingForm
 from . import db
 import uuid, os
 from flask_login import login_required, current_user
+from datetime import datetime
 
 bp = Blueprint('main', __name__)
 
@@ -29,6 +30,10 @@ def event(id):
     if exists is None:
         abort(404)
     event = db.session.scalar(db.select(Event).where(Event.id==id))
+    if datetime.now() > event.dateTime:
+        event.status="Inactive"
+        db.session.commit() 
+        flash('This event is now inactive.')
     comment_form = CommentForm()
     booking_form = BookingForm()
     return render_template('event.html', event=event, comment_form=comment_form, booking_form=booking_form)
