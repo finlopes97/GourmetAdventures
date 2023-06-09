@@ -1,24 +1,23 @@
-
 <style>
     .edit-button {
     position: relative;
     z-index: 2;
 }
 </style>
+
 <div class="col-lg-3 col-md-4 col-sm-6 mb-3">
     <div class="card event-card shadow bg-body-tertiary">
         <img src="{{ event.image }}" class="card-img-top event-card-img" alt="...">
         <div class="card-body">
             <h5 class="card-title">{{ event.title }}</h5>
             <p class="card-text">{{ event.dateTime }}<br>{{ event.locationName }}<br>${{ event.price }} per ticket</p>
-            {% if event.user_id == current_user.id %}
-                <form action="{{ url_for('main.create', event_id=event.id) }}" method="POST" class="edit-button">
+            {% if event.user_id == current_user.id and event.status != "Cancelled" %}
+                <form action="{{ url_for('main.cancel', id=event.id) }}" method="POST" class="edit-button">
                     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
-                    <input type="submit" value="Edit Event" class="btn btn-outline-primary">
+                    <input type="submit" value="Cancel Event?" class="btn btn-outline-danger">
                 </form>
             {% endif %}
             <a type="button" class="btn btn-outline-success btn-sm" href="{{ url_for('main.event', id=event.id) }}">{{ event.status }}</a>
         </div>
     </div>
 </div>
-

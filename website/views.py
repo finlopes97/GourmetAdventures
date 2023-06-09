@@ -125,7 +125,14 @@ def create():
             return redirect(url_for('main.index'))
      
     return render_template('create.html', create_form=create_form)
+
+@bp.route('/cancel/<int:id>', methods=['GET', 'POST'])
+@login_required
+def cancel(id):
+    event = Event.query.get(id)
+
+    event.status = "Cancelled"
+    db.session.commit()
+    flash('Your event has been cancelled.')
     
-@bp.route('/bookings')
-def bookings():
-    return render_template('bookings.html')
+    return redirect(url_for('auth.user'))

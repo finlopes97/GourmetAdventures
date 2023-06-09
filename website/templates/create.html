@@ -45,36 +45,5 @@
             </form>
         </div>
     </div>
-
-    <!-- Event submission toast -->
-    <!--
-    <div class="toast-container position-fixed bottom-0 end-0 p-3">
-        <div id="submissionToast" class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="d-flex">
-                <div class="toast-body">
-                    Event submitted! <a href="/event">View page</a>
-                </div>
-                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-            </div>
-        </div>
-    </div>
-    -->
-
 </div>
-
-<!-- Initialize toast and prevent refresh -->
-<!--
-<script>
-    const toastTrigger = document.getElementById('createEvent')
-    const toastSubmit = document.getElementById('submissionToast')
-
-    if (toastTrigger) {
-        const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastSubmit)
-        toastTrigger.addEventListener('submit', event => {
-            event.preventDefault();
-            toastBootstrap.show()
-        })
-    }
-</script>
--->
 {% endblock %}
