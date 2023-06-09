@@ -1,4 +1,4 @@
-from flask import Blueprint, flash, render_template, request, redirect, url_for
+from flask import Blueprint, flash, render_template, request, redirect, url_for, abort
 from werkzeug.utils import secure_filename
 from .models import Event, Comment, Booking
 from .forms import EventCreationForm, CommentForm, BookingForm
@@ -16,16 +16,18 @@ def index():
 
 @bp.route('/<category>')
 def category(category):
+    exists = Event.query.filter_by(category=category).first()
+    if exists is None:
+        abort(404)
     events = db.session.scalars(db.select(Event).where(Event.category==category))
     categories = db.session.scalars(db.select(Event.category).distinct())
     return render_template('index.html', events=events, categories=categories)
 
-# @bp.route('/user')
-# def user():
-#     return render_template('user.html')
-
 @bp.route('/event/<id>')
 def event(id):
+    exists = Event.query.filter_by(id=id).first()
+    if exists is None:
+        abort(404)
     event = db.session.scalar(db.select(Event).where(Event.id==id))
     comment_form = CommentForm()
     booking_form = BookingForm()
